@@ -83,7 +83,7 @@ function renderTable(response) {
         tbody.innerHTML = '<tr><td colspan="100">No data found</td></tr>';
         return;
     }
-    headerRow.innerHTML = '<th>Name</th><th>Address</th><th>ID</th>';
+    headerRow.innerHTML = '<th>ID</th><th>Name</th><th>Address</th>';
     tbody.innerHTML = entries.map(entry => {
         const resource = entry.resource || {};
         const name = resource.name || '';
