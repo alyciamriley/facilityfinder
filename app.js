@@ -83,10 +83,14 @@ function renderTable(response) {
         tbody.innerHTML = '<tr><td colspan="100">No data found</td></tr>';
         return;
     }
-    headerRow.innerHTML = '<th>ID</th><th>Name</th><th>Address</th>';
+    headerRow.innerHTML = '<th>ID</th><th>Name</th><th>Address</th><th>Type</th>';
     tbody.innerHTML = entries.map(entry => {
         const resource = entry.resource || {};
         const name = resource.name || '';
+        let type = '';
+        if (Array.isArray(resource.type)) {
+            type = resource.type.map(t => t.text || '').join(', ');
+        }
         let address = '';
         if (resource.address && Array.isArray(resource.address.line)) {
             address = resource.address.line.join(', ');
@@ -94,6 +98,6 @@ function renderTable(response) {
             address = resource.address.line;
         }
         const id = resource.id || '';
-        return `<tr><td>${id}</td><td>${name}</td><td>${address}</td></tr>`;
+        return `<tr><td>${id}</td><td>${name}</td><td>${address}</td><td>${type}</td></tr>`;
     }).join('');
 }
