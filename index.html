@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Facility ID Finder</title>
+	<style>
+		body { font-family: Arial, sans-serif; margin: 40px; }
+		table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+		th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+		th { background-color: #f4f4f4; }
+		.input-group { margin-bottom: 20px; }
+		label { margin-right: 10px; }
+	</style>
+</head>
+<body>
+	<h1>Facility ID Finder</h1>
+	<div class="input-group">
+		<label for="facilityInput">Facility Variable:</label>
+		<input type="text" id="facilityInput" placeholder="Enter variable value">
+		<button id="authBtn">Authenticate</button>
+		<button id="fetchBtn" disabled>Fetch Data</button>
+	</div>
+	<div id="infoBox" style="margin-bottom: 20px; color: #b00; font-weight: bold;"></div>
+	<table id="dataTable">
+		<thead>
+			<tr id="headerRow">
+				<!-- Headers will be inserted here -->
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Data rows will be inserted here -->
+		</tbody>
+	</table>
+	<script src="app.js"></script>
+</body>
+</html>
