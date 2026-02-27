@@ -6,7 +6,6 @@ const CLIENT_SECRET = '57d59fc4768834aa4c0a6431c0da7e4'; // <-- Update to your c
 const API_URL_BASE = 'https://app.azaleahealth.com/fhir/R4'; // Update as needed
 
 const authBtn = document.getElementById('authBtn');
-const fetchBtn = document.getElementById('fetchBtn');
 const facilityInput = document.getElementById('facilityInput');
 const dataTable = document.getElementById('dataTable');
 const headerRow = document.getElementById('headerRow');
@@ -27,7 +26,6 @@ authBtn.addEventListener('click', async () => {
     infoBox.textContent = '';
     if (!tenantId) {
         infoBox.textContent = 'Please enter a tenant ID.';
-        fetchBtn.disabled = true;
         return;
     }
     const authUrl = `${BASE_URL}/${tenantId}/oauth/token`;
@@ -47,18 +45,19 @@ authBtn.addEventListener('click', async () => {
         authToken = result.access_token || result.token || '';
         if (!authToken) throw new Error('No token received');
         authBtn.disabled = true;
-        fetchBtn.disabled = false;
         infoBox.textContent = 'Authentication successful!';
         setTimeout(() => { infoBox.textContent = ''; infoBox.style.color = '#02346D'; }, 20000);
+        
+        // Automatically fetch data after authentication
+        await fetchData();
     } catch (error) {
-        fetchBtn.disabled = true;
         infoBox.style.color = '#02346D';
         infoBox.textContent = 'Authentication error: ' + error.message;
     }
 });
 
-// Fetch data with token and variable
-fetchBtn.addEventListener('click', async () => {
+// Fetch data with token
+async function fetchData() {
     infoBox.textContent = '';
     if (!tenantId) {
         infoBox.textContent = 'Please authenticate first.';
@@ -78,7 +77,7 @@ fetchBtn.addEventListener('click', async () => {
         tbody.innerHTML = `<tr><td colspan="100">Error: ${error.message}</td></tr>`;
         infoBox.textContent = 'Fetch error: ' + error.message;
     }
-});
+}
 
 function renderTable(response) {
     console.log("API Response", response);
