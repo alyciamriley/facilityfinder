@@ -16,6 +16,11 @@ const infoBox = document.getElementById('infoBox');
 let authToken = '';
 let tenantId = '';
 
+// Re-enable auth button when input changes
+facilityInput.addEventListener('input', () => {
+    authBtn.disabled = false;
+});
+
 // Authenticate and get token
 authBtn.addEventListener('click', async () => {
     tenantId = facilityInput.value.trim();
@@ -41,6 +46,7 @@ authBtn.addEventListener('click', async () => {
         const result = await response.json();
         authToken = result.access_token || result.token || '';
         if (!authToken) throw new Error('No token received');
+        authBtn.disabled = true;
         fetchBtn.disabled = false;
         infoBox.textContent = 'Authentication successful!';
         setTimeout(() => { infoBox.textContent = ''; infoBox.style.color = '#02346D'; }, 20000);
