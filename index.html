@@ -4,24 +4,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Facility ID Finder</title>
-	<style>
-		body { font-family: Arial, sans-serif; margin: 40px; }
-		table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-		th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-		th { background-color: #f4f4f4; }
-		.input-group { margin-bottom: 20px; }
-		label { margin-right: 10px; }
-	</style>
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<h1>Facility ID Finder</h1>
+	<header>
+		<img src="assets/RevSpring Horizontal Logo Full Color.png" alt="RevSpring Logo" class="logo">
+		<h1>Facility ID Finder</h1>
+	</header>
 	<div class="input-group">
 		<label for="facilityInput">Tenant ID:</label>
 		<input type="text" id="facilityInput" placeholder="Enter tenant ID">
 		<button id="authBtn">Authenticate</button>
 		<button id="fetchBtn" disabled>Fetch Data</button>
 	</div>
-	<div id="infoBox" style="margin-bottom: 20px; color: #b00; font-weight: bold;"></div>
+	<div id="infoBox" style="margin-bottom: 20px; font-weight: bold;"></div>
 	<table id="dataTable">
 		<thead>
 			<tr id="headerRow">

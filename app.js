@@ -42,12 +42,11 @@ authBtn.addEventListener('click', async () => {
         authToken = result.access_token || result.token || '';
         if (!authToken) throw new Error('No token received');
         fetchBtn.disabled = false;
-        infoBox.style.color = '#080';
         infoBox.textContent = 'Authentication successful!';
-        setTimeout(() => { infoBox.textContent = ''; infoBox.style.color = '#b00'; }, 2000);
+        setTimeout(() => { infoBox.textContent = ''; infoBox.style.color = '#02346D'; }, 20000);
     } catch (error) {
         fetchBtn.disabled = true;
-        infoBox.style.color = '#b00';
+        infoBox.style.color = '#02346D';
         infoBox.textContent = 'Authentication error: ' + error.message;
     }
 });
